@@ -1,0 +1,68 @@
+# Dedicated local test stack for Mibizum Search for WooCommerce.
+#
+# Brings up a throwaway WordPress + MariaDB, mounts this plugin live, installs
+# WooCommerce, imports the WooCommerce sample products, and activates the plugin.
+#
+#   cd packages/adapter-woocommerce/dev
+#   docker compose up -d
+#   # WordPress:        http://localhost:8088   (admin / admin)
+#   # provisioning logs: docker compose logs -f wpcli
+#
+# Tear down (including data):  docker compose down -v
+#
+# When Docker is not available, use ./install-local.sh instead (SQLite + the PHP
+# built in server, no containers).
+
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: rootpw
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wordpress:
+    image: wordpress:php8.2-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8088:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_data:/var/www/html
+      # Mount the plugin live so edits are reflected immediately.
+      - ../:/var/www/html/wp-content/plugins/mibizum-search
+
+  wpcli:
+    image: wordpress:cli-php8.2
+    depends_on:
+      - wordpress
+    user: "33:33"
+    volumes:
+      - wp_data:/var/www/html
+      - ../:/var/www/html/wp-content/plugins/mibizum-search
+      - ./provision.sh:/provision.sh:ro
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      SITE_URL: http://localhost:8088
+    entrypoint: ["bash", "/provision.sh"]
+
+volumes:
+  db_data:
+  wp_data:

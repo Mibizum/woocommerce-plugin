@@ -1,0 +1,470 @@
+# Copyright (C) 2026 Mibizum
+# This file is distributed under the MIT.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mibizum Search for WooCommerce 0.1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: mibizum-search\n"
+
+#. Plugin Name of the plugin
+msgid "Mibizum Search for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://mibizum.io"
+msgstr ""
+
+#. Description of the plugin
+msgid "Privacy first search for WooCommerce. Indexes the catalog in the background, replaces the native product search with the Mibizum engine (with automatic fallback to native search), and adds the instant search widget."
+msgstr ""
+
+#. Author of the plugin
+#: src/Admin/Settings_Tab.php:62
+msgid "Mibizum"
+msgstr ""
+
+#: mibizum-search.php:98
+msgid "Mibizum Search requires WooCommerce to be installed and active."
+msgstr "Mibizum Search erfordert, dass WooCommerce installiert und aktiv ist."
+
+#: src/Admin/Badges_Editor.php:57
+#: src/Admin/Badges_Editor.php:58
+#: src/Admin/Badges_Editor.php:78
+msgid "Mibizum badges"
+msgstr "Mibizum-Badges"
+
+#: src/Admin/Badges_Editor.php:84
+#: src/Admin/Settings_Tab.php:324
+msgid "Category badges"
+msgstr "Kategorie-Badges"
+
+#: src/Admin/Badges_Editor.php:90
+#: src/Admin/Settings_Tab.php:330
+msgid "Attribute badges"
+msgstr "Attribut-Badges"
+
+#: src/Admin/Badges_Editor.php:112
+#: src/Admin/Badges_Editor.php:142
+#: src/Admin/Badges_Editor.php:218
+#: src/Admin/Badges_Editor.php:243
+msgid "Label"
+msgstr "Bezeichnung"
+
+#: src/Admin/Badges_Editor.php:113
+#: src/Admin/Badges_Editor.php:312
+msgid "Color"
+msgstr "Farbe"
+
+#: src/Admin/Badges_Editor.php:114
+#: src/Admin/Badges_Editor.php:145
+msgid "Categories"
+msgstr "Kategorien"
+
+#: src/Admin/Badges_Editor.php:115
+msgid "Priority"
+msgstr "Priorität"
+
+#: src/Admin/Badges_Editor.php:116
+#: src/Admin/Badges_Editor.php:221
+#: src/Admin/Badges_Editor.php:317
+#: src/Admin/Settings_Tab.php:192
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: src/Admin/Badges_Editor.php:127
+#: src/Admin/Badges_Editor.php:229
+msgid "Yes"
+msgstr "Ja"
+
+#: src/Admin/Badges_Editor.php:127
+#: src/Admin/Badges_Editor.php:229
+msgid "No"
+msgstr "Nein"
+
+#: src/Admin/Badges_Editor.php:132
+msgid "No category badges yet."
+msgstr "Noch keine Kategorie-Badges."
+
+#: src/Admin/Badges_Editor.php:137
+msgid "Add a category badge"
+msgstr "Kategorie-Badge hinzufügen"
+
+#: src/Admin/Badges_Editor.php:144
+#: src/Admin/Badges_Editor.php:249
+msgid "Priority (lower wins)"
+msgstr "Priorität (niedriger gewinnt)"
+
+#: src/Admin/Badges_Editor.php:147
+msgid "Include subcategories"
+msgstr "Unterkategorien einbeziehen"
+
+#: src/Admin/Badges_Editor.php:151
+msgid "Add category badge"
+msgstr "Kategorie-Badge hinzufügen"
+
+#: src/Admin/Badges_Editor.php:219
+#: src/Admin/Badges_Editor.php:244
+msgid "Attribute"
+msgstr "Attribut"
+
+#: src/Admin/Badges_Editor.php:220
+msgid "Value (term slug)"
+msgstr "Wert (Term-Slug)"
+
+#: src/Admin/Badges_Editor.php:228
+msgid "(any)"
+msgstr "(beliebig)"
+
+#: src/Admin/Badges_Editor.php:234
+msgid "No attribute badges yet."
+msgstr "Noch keine Attribut-Badges."
+
+#: src/Admin/Badges_Editor.php:238
+msgid "Add an attribute badge"
+msgstr "Attribut-Badge hinzufügen"
+
+#: src/Admin/Badges_Editor.php:247
+msgid "Value (term slug, empty = any)"
+msgstr "Wert (Term-Slug, leer = beliebig)"
+
+#: src/Admin/Badges_Editor.php:252
+msgid "Add attribute badge"
+msgstr "Attribut-Badge hinzufügen"
+
+#: src/Admin/Badges_Editor.php:318
+msgid "Active"
+msgstr "Aktiv"
+
+#: src/Admin/Badges_Editor.php:334
+msgid "Select an attribute"
+msgstr "Attribut auswählen"
+
+#: src/Admin/Badges_Editor.php:345
+msgid "Delete this badge?"
+msgstr "Dieses Badge löschen?"
+
+#: src/Admin/Badges_Editor.php:349
+msgid "Delete"
+msgstr "Löschen"
+
+#: src/Admin/Badges_Editor.php:361
+msgid "Not allowed."
+msgstr "Nicht erlaubt."
+
+#: src/Admin/Reindex_Page.php:66
+#: src/Admin/Settings_Tab.php:79
+#: src/Admin/Settings_Tab.php:186
+msgid "Connection"
+msgstr "Verbindung"
+
+#: src/Admin/Reindex_Page.php:69
+#: src/Admin/Reindex_Page.php:161
+msgid "Connected"
+msgstr "Verbunden"
+
+#: src/Admin/Reindex_Page.php:70
+msgid "Not connected"
+msgstr "Nicht verbunden"
+
+#: src/Admin/Reindex_Page.php:74
+msgid "Last full reindex"
+msgstr "Letzte vollständige Neuindexierung"
+
+#: src/Admin/Reindex_Page.php:77
+msgid "Never"
+msgstr "Nie"
+
+#: src/Admin/Reindex_Page.php:83
+msgid "Changes pending indexing"
+msgstr "Ausstehende zu indexierende Änderungen"
+
+#: src/Admin/Reindex_Page.php:92
+msgid "Resync all products"
+msgstr "Alle Produkte neu synchronisieren"
+
+#: src/Admin/Reindex_Page.php:95
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: src/Admin/Reindex_Page.php:122
+msgid "Scheduling…"
+msgstr "Wird geplant…"
+
+#: src/Admin/Reindex_Page.php:125
+msgid "Reindex scheduled."
+msgstr "Neuindexierung geplant."
+
+#: src/Admin/Reindex_Page.php:148
+msgid "Connected catalogs"
+msgstr "Verbundene Kataloge"
+
+#: src/Admin/Reindex_Page.php:150
+msgid "Scope"
+msgstr "Bereich"
+
+#: src/Admin/Reindex_Page.php:151
+msgid "Data source"
+msgstr "Datenquelle"
+
+#: src/Admin/Reindex_Page.php:152
+msgid "Status"
+msgstr "Status"
+
+#: src/Admin/Reindex_Page.php:162
+msgid "Not configured"
+msgstr "Nicht konfiguriert"
+
+#: src/Admin/Rest_Controller.php:127
+msgid "Not connected: set the connection (enabled + indexer key + API URL) before reindexing."
+msgstr "Nicht verbunden: Richte die Verbindung ein (aktiviert + Indexer-Schlüssel + API-URL), bevor du neu indexierst."
+
+#: src/Admin/Rest_Controller.php:165
+msgid "No keys received from Mibizum."
+msgstr "Keine Schlüssel von Mibizum erhalten."
+
+#: src/Admin/Rest_Controller.php:227
+msgid "Unknown wizard state."
+msgstr "Unbekannter Assistenten-Status."
+
+#: src/Admin/Settings_Tab.php:80
+#: src/Admin/Settings_Tab.php:240
+msgid "Frontend"
+msgstr "Frontend"
+
+#: src/Admin/Settings_Tab.php:81
+#: src/Admin/Settings_Tab.php:271
+msgid "Sync"
+msgstr "Synchronisierung"
+
+#: src/Admin/Settings_Tab.php:82
+#: src/Admin/Settings_Tab.php:311
+msgid "Badges"
+msgstr "Badges"
+
+#: src/Admin/Settings_Tab.php:83
+msgid "Reindex"
+msgstr "Neu indexieren"
+
+#: src/Admin/Settings_Tab.php:149
+msgid "Connection changed: a full reindex was scheduled."
+msgstr "Verbindung geändert: eine vollständige Neuindexierung wurde geplant."
+
+#: src/Admin/Settings_Tab.php:179
+msgid "A key is stored. Leave blank to keep it."
+msgstr "Ein Schlüssel ist gespeichert. Leer lassen, um ihn zu behalten."
+
+#: src/Admin/Settings_Tab.php:180
+msgid "Stored encrypted. Never sent to the browser."
+msgstr "Verschlüsselt gespeichert. Wird nie an den Browser gesendet."
+
+#: src/Admin/Settings_Tab.php:187
+msgid "The only step needed for the plugin to start working. Nothing is published until this is enabled and the keys are present."
+msgstr "Der einzige Schritt, damit das Plugin zu arbeiten beginnt. Es wird nichts veröffentlicht, bis dies aktiviert ist und die Schlüssel vorhanden sind."
+
+#: src/Admin/Settings_Tab.php:193
+msgid "Turn on indexing and the search override."
+msgstr "Aktiviere die Indexierung und die Suchübersteuerung."
+
+#: src/Admin/Settings_Tab.php:199
+msgid "API URL"
+msgstr "API-URL"
+
+#: src/Admin/Settings_Tab.php:205
+msgid "API key (indexer)"
+msgstr "API-Schlüssel (Indexer)"
+
+#: src/Admin/Settings_Tab.php:213
+msgid "API key (search)"
+msgstr "API-Schlüssel (Search)"
+
+#: src/Admin/Settings_Tab.php:221
+msgid "Data source slug"
+msgstr "Datenquellen-Slug"
+
+#: src/Admin/Settings_Tab.php:222
+msgid "The catalog slug. Empty uses the account first data source."
+msgstr "Der Katalog-Slug. Leer verwendet die erste Datenquelle des Kontos."
+
+#: src/Admin/Settings_Tab.php:245
+#: templates/wizard.php:69
+msgid "Enable widget"
+msgstr "Widget aktivieren"
+
+#: src/Admin/Settings_Tab.php:251
+msgid "Widget snippet"
+msgstr "Widget-Snippet"
+
+#: src/Admin/Settings_Tab.php:252
+msgid "Paste the snippet from your Mibizum panel (Domains, JS code). Injected verbatim in the head. Empty means no widget."
+msgstr "Füge den Snippet aus deinem Mibizum-Panel ein (Domains, JS-Code). Wird unverändert in den Head eingefügt. Leer bedeutet kein Widget."
+
+#: src/Admin/Settings_Tab.php:272
+msgid "Sensible defaults. Rarely need changing."
+msgstr "Sinnvolle Standardwerte. Müssen selten geändert werden."
+
+#: src/Admin/Settings_Tab.php:277
+msgid "Batch size"
+msgstr "Stapelgröße"
+
+#: src/Admin/Settings_Tab.php:284
+msgid "Maximum retries"
+msgstr "Maximale Wiederholungen"
+
+#: src/Admin/Settings_Tab.php:291
+msgid "HTTP timeout (s)"
+msgstr "HTTP-Timeout (s)"
+
+#: src/Admin/Settings_Tab.php:312
+msgid "Labels travel inside the indexed document. Changing them schedules a reindex."
+msgstr "Die Bezeichnungen reisen im indexierten Dokument mit. Eine Änderung plant eine Neuindexierung."
+
+#: src/Admin/Settings_Tab.php:313
+msgid "Manage category and attribute badges"
+msgstr "Kategorie- und Attribut-Badges verwalten"
+
+#: src/Admin/Settings_Tab.php:318
+msgid "System badges"
+msgstr "System-Badges"
+
+#: src/Admin/Settings_Tab.php:336
+msgid "Out of stock label"
+msgstr "Bezeichnung: Nicht vorrätig"
+
+#: src/Admin/Settings_Tab.php:342
+msgid "Last units label"
+msgstr "Bezeichnung: Letzte Einheiten"
+
+#: src/Admin/Settings_Tab.php:348
+msgid "Last units threshold"
+msgstr "Schwelle: Letzte Einheiten"
+
+#: src/Admin/Settings_Tab.php:355
+msgid "On sale label"
+msgstr "Bezeichnung: Im Angebot"
+
+#: src/Admin/Wizard.php:87
+#: src/Admin/Wizard.php:88
+msgid "Mibizum setup"
+msgstr "Mibizum-Einrichtung"
+
+#: src/Admin/Wizard.php:142
+msgid "Finish connecting your store to Mibizum search."
+msgstr "Schließe die Verbindung deines Shops mit der Mibizum-Suche ab."
+
+#: src/Admin/Wizard.php:144
+msgid "Set up Mibizum"
+msgstr "Mibizum einrichten"
+
+#: src/Scope/Scope_Resolver.php:67
+msgid "Default"
+msgstr "Standard"
+
+#: src/Settings.php:281
+msgid "Out of stock"
+msgstr "Nicht vorrätig"
+
+#: src/Settings.php:285
+msgid "On sale"
+msgstr "Im Angebot"
+
+#: src/Settings.php:289
+msgid "Last units"
+msgstr "Letzte Einheiten"
+
+#: src/Settings.php:294
+msgid "New"
+msgstr "Neu"
+
+#: src/Settings.php:299
+msgid "Featured"
+msgstr "Hervorgehoben"
+
+#: templates/wizard.php:24
+msgid "Start"
+msgstr "Start"
+
+#: templates/wizard.php:25
+msgid "Account"
+msgstr "Konto"
+
+#: templates/wizard.php:26
+msgid "Indexing"
+msgstr "Indexierung"
+
+#: templates/wizard.php:27
+msgid "Widget"
+msgstr "Widget"
+
+#: templates/wizard.php:34
+msgid "Connect this store to Mibizum search"
+msgstr "Verbinde diesen Shop mit der Mibizum-Suche"
+
+#: templates/wizard.php:35
+msgid "We will connect your store to Mibizum: index your catalog, power the search box and add the instant search widget."
+msgstr "Wir verbinden deinen Shop mit Mibizum: deinen Katalog indexieren, die Suchbox stärken und das Sofortsuche-Widget hinzufügen."
+
+#: templates/wizard.php:36
+msgid "Nothing changes in your store until the connection is complete. You can stop any time."
+msgstr "In deinem Shop ändert sich nichts, bis die Verbindung abgeschlossen ist. Du kannst jederzeit aufhören."
+
+#: templates/wizard.php:38
+#: templates/wizard.php:60
+msgid "Continue"
+msgstr "Weiter"
+
+#: templates/wizard.php:39
+msgid "Later"
+msgstr "Später"
+
+#: templates/wizard.php:44
+msgid "Sign in or create your Mibizum account"
+msgstr "Melde dich an oder erstelle dein Mibizum-Konto"
+
+#: templates/wizard.php:48
+msgid "Could not load the Mibizum onboarding. You can configure the connection by hand instead."
+msgstr "Das Mibizum-Onboarding konnte nicht geladen werden. Du kannst die Verbindung stattdessen manuell einrichten."
+
+#: templates/wizard.php:49
+msgid "Configure manually"
+msgstr "Manuell konfigurieren"
+
+#: templates/wizard.php:55
+msgid "Indexing your catalog"
+msgstr "Dein Katalog wird indexiert"
+
+#: templates/wizard.php:56
+msgid "This runs in the background. You can keep working; you do not need to wait here."
+msgstr "Dies läuft im Hintergrund. Du kannst weiterarbeiten; du musst hier nicht warten."
+
+#: templates/wizard.php:58
+msgid "changes pending"
+msgstr "ausstehende Änderungen"
+
+#: templates/wizard.php:65
+msgid "Turn on the search widget"
+msgstr "Aktiviere das Such-Widget"
+
+#: templates/wizard.php:66
+msgid "Paste the widget snippet from your Mibizum panel (Domains, JS code). If you connected through the wizard it may already be filled in."
+msgstr "Füge den Widget-Snippet aus deinem Mibizum-Panel ein (Domains, JS-Code). Wenn du über den Assistenten verbunden hast, ist er möglicherweise bereits ausgefüllt."
+
+#: templates/wizard.php:70
+msgid "Skip for now"
+msgstr "Vorerst überspringen"
+
+#: templates/wizard.php:75
+msgid "All set"
+msgstr "Fertig"
+
+#: templates/wizard.php:76
+msgid "Your store is connected to Mibizum. Your search box now uses the Mibizum engine."
+msgstr "Dein Shop ist mit Mibizum verbunden. Deine Suchbox verwendet jetzt das Mibizum-Modul."
+
+#: templates/wizard.php:78
+msgid "Done"
+msgstr "Fertig"
+

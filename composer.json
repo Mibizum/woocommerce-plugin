@@ -1,0 +1,26 @@
+{
+	"name": "mibizum/search-for-woocommerce",
+	"description": "Privacy first search for WooCommerce: background indexing, instant search widget, and a native search override with automatic fallback.",
+	"type": "wordpress-plugin",
+	"license": "MIT",
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"Mibizum\\Search\\": "src/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"lint": "phpcs --standard=WordPress src/ mibizum-search.php uninstall.php"
+	}
+}
