@@ -12,22 +12,27 @@ Privacy first search for WooCommerce: background indexing, an instant search wid
 
 == Description ==
 
-Mibizum Search connects a WooCommerce store to the Mibizum search engine. Once configured it does three things:
+Mibizum Search replaces the default WooCommerce product search with the Mibizum search engine: fast, typo tolerant results, an instant search widget, and automatic background indexing of your catalog. It is a connector for the Mibizum search service and needs a Mibizum account.
 
-* Keeps the catalog indexed automatically. Every product you save, and every stock change, is published to Mibizum in the background. The request is never blocked.
-* Replaces the native product search. When a customer searches, results come from the Mibizum engine, with an automatic fallback to native WooCommerce search if the engine does not respond.
-* Adds an instant search widget over the search box, with images, price and badges as the customer types.
+What it does:
 
-Safe by design. The plugin never breaks the store. If you deactivate it, leave a key half set, or Mibizum does not respond, the store keeps working and search falls back to native WooCommerce search on its own.
+* Background indexing. Every product you create, update, or whose stock changes is published to Mibizum out of band (via Action Scheduler), so the page request is never blocked.
+* Search that replaces the native one. When a customer searches, results come from the Mibizum engine, consistent with the instant search widget. If the engine ever errors or times out, the plugin falls back to native WooCommerce search automatically.
+* Instant search widget. Paste the snippet from your Mibizum panel and the search box gets an as you type overlay with images, price and badges.
+* Badges. System badges (out of stock, last units, on sale, new, featured) plus your own per category and per attribute badges. The labels travel inside the indexed document.
+* Multi store and multi language. One Mibizum data source per language (WPML or Polylang) and per site (WordPress Multisite), each indexed in its own translated context.
+* A first run setup wizard to connect, index, and turn on the widget.
 
-== Two API keys ==
+Safe by design. The plugin never breaks the store. If you deactivate it, leave a key half set, or Mibizum does not respond, the store keeps working and search falls back to native WooCommerce search on its own. Nothing is published until you enable the connection and provide your keys.
 
-* Indexer key (write): publishes the catalog. Stored encrypted on the server. Never sent to the browser.
-* Search key (read): used by the search override and embedded in the widget snippet. The only key that reaches the browser.
+Two API keys are used, for safety: an indexer key (write, stored encrypted on the server, never sent to the browser) and a search key (read, used by the search override and embedded in the public widget snippet).
 
-== Multi store and multi language ==
+== Requirements ==
 
-One Mibizum data source per language (WPML or Polylang) and per site (WordPress Multisite). Each scope has its own connection and is indexed in its own translated context.
+* WordPress 6.0 or newer.
+* WooCommerce 7.0 or newer (HPOS compatible).
+* PHP 7.4 or newer.
+* A Mibizum account with a data source and two API keys. See https://mibizum.io.
 
 == Installation ==
 
