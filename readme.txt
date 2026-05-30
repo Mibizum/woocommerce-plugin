@@ -63,8 +63,8 @@ What is sent, and when:
   the plugin.
 
 Service provider: Mibizum, https://mibizum.io
-Terms of service: https://mibizum.io/terms
-Privacy policy: https://mibizum.io/privacy
+Terms of service: https://mibizum.io/legal/terms
+Privacy policy: https://mibizum.io/legal/privacy
 
 == Screenshots ==
 
