@@ -181,6 +181,9 @@ class Wizard {
 	 * @return void
 	 */
 	public function render() {
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'mibizum-search' ) );
+		}
 		$config = array(
 			'restBase'      => esc_url_raw( rest_url( Rest_Controller::NS ) ),
 			'nonce'         => wp_create_nonce( 'wp_rest' ),

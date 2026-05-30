@@ -110,17 +110,40 @@ class Search_Override {
 					$ids[] = (int) $hit['id'];
 				}
 			}
+			$ids = array_values( array_unique( array_filter( $ids ) ) );
 
 			$total = (int) $result['totalHits'];
 			if ( $total <= 0 ) {
 				$total = count( $ids );
 			}
-
 			$query->found_posts   = $total;
 			$query->max_num_pages = $per_page > 0 ? (int) ceil( $total / $per_page ) : 1;
 
-			// Returning ids short circuits the DB query; WP hydrates them in order.
-			return $ids;
+			if ( empty( $ids ) ) {
+				return array();
+			}
+
+			// Defense in depth: only surface ids that are genuinely PUBLISHED
+			// PRODUCTS, preserving the engine's relevance order. Returning raw
+			// engine ids would let a compromised, misconfigured or stale engine
+			// response display private posts, other post types, or deleted ids
+			// on the storefront. This by-id fetch closes that. The inner query is
+			// not the main query, so this filter short circuits for it (no
+			// recursion).
+			$valid = get_posts(
+				array(
+					'post_type'        => 'product',
+					'post_status'      => 'publish',
+					'post__in'         => $ids,
+					'orderby'          => 'post__in',
+					'posts_per_page'   => count( $ids ),
+					'fields'           => 'ids',
+					'no_found_rows'    => true,
+					'suppress_filters' => true,
+				)
+			);
+
+			return is_array( $valid ) ? $valid : array();
 		} catch ( \Exception $e ) {
 			$this->logger->warning(
 				'search override engine failed, falling back to native: ' . $e->getMessage(),

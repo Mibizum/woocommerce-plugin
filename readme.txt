@@ -43,6 +43,29 @@ No. It only reads them to build the search index.
 = What happens if Mibizum is down? =
 Search falls back to native WooCommerce search. The customer always sees results, never an error.
 
+== External services ==
+
+This plugin connects to the Mibizum search service (https://app.mibizum.io) to
+index your catalog and to serve search results. This is the core function of the
+plugin and requires a Mibizum account. Nothing is sent until you enable the
+connection and provide your API keys.
+
+What is sent, and when:
+
+* Indexing (server side, using your indexer key): when you save a product or its
+  stock changes, the plugin sends that product's catalog data (name, SKU,
+  descriptions, price, stock, image URL, categories, product URL, and the
+  attributes and badges you configure) to https://app.mibizum.io.
+* Search (using your search key): a customer's search query on your store is sent
+  to https://app.mibizum.io to return matching products. Your store's origin is
+  sent so the service can validate the request.
+* No customer personal data is sent, and nothing at all is sent until you connect
+  the plugin.
+
+Service provider: Mibizum, https://mibizum.io
+Terms of service: https://mibizum.io/terms
+Privacy policy: https://mibizum.io/privacy
+
 == Screenshots ==
 
 1. Connection settings under WooCommerce, Settings, Mibizum.

@@ -73,6 +73,9 @@ class Badges_Editor {
 	 * @return void
 	 */
 	public function render() {
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'mibizum-search' ) );
+		}
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$tab = isset( $_GET['type'] ) && 'attribute' === $_GET['type'] ? 'attribute' : 'category';
 		echo '<div class="wrap"><h1>' . esc_html__( 'Mibizum badges', 'mibizum-search' ) . '</h1>';

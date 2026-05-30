@@ -48,6 +48,9 @@ class Reindex_Page {
 	 * @return void
 	 */
 	public function render() {
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			return;
+		}
 		$stats     = $this->queue->stats();
 		$last_at   = get_option( 'mibizum_search_last_full_at', '' );
 		$last_stat = get_option( 'mibizum_search_last_full_status', '' );
