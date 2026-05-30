@@ -2,7 +2,7 @@
 Contributors: mibizum
 Tags: search, woocommerce, instant search, product search, search engine
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 0.1.0
 License: MIT

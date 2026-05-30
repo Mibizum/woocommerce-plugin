@@ -64,7 +64,7 @@ class Index_Client {
 		}
 		if ( count( $documents ) > self::MAX_BATCH_SIZE ) {
 			throw new RuntimeException(
-				sprintf( 'index_documents: batch too large (%d > %d)', count( $documents ), self::MAX_BATCH_SIZE )
+				esc_html( sprintf( 'index_documents: batch too large (%d > %d)', count( $documents ), self::MAX_BATCH_SIZE ) )
 			);
 		}
 
@@ -86,7 +86,7 @@ class Index_Client {
 		}
 
 		throw new RuntimeException(
-			sprintf( 'index_documents: backend HTTP %d %s', $code, substr( (string) $body, 0, 300 ) )
+			esc_html( sprintf( 'index_documents: backend HTTP %d %s', $code, substr( (string) $body, 0, 300 ) ) )
 		);
 	}
 
@@ -130,7 +130,7 @@ class Index_Client {
 		}
 
 		if ( 0 === $ok && ! empty( $errors ) ) {
-			throw new RuntimeException( 'delete_documents_by_ids: ALL failed: ' . implode( ' | ', array_slice( $errors, 0, 5 ) ) );
+			throw new RuntimeException( esc_html( 'delete_documents_by_ids: ALL failed: ' . implode( ' | ', array_slice( $errors, 0, 5 ) ) ) );
 		}
 		if ( ! empty( $errors ) ) {
 			$this->logger->warning( sprintf( 'delete_documents_by_ids: %d OK, %d failed', $ok, count( $errors ) ) );
@@ -165,7 +165,7 @@ class Index_Client {
 			return is_array( $json ) ? $json : array();
 		}
 		throw new RuntimeException(
-			sprintf( 'apply_settings: backend HTTP %d %s', $code, substr( (string) $body, 0, 300 ) )
+			esc_html( sprintf( 'apply_settings: backend HTTP %d %s', $code, substr( (string) $body, 0, 300 ) ) )
 		);
 	}
 
@@ -229,7 +229,7 @@ class Index_Client {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			throw new RuntimeException( 'Network error: ' . $response->get_error_message() );
+			throw new RuntimeException( esc_html( 'Network error: ' . $response->get_error_message() ) );
 		}
 		return array(
 			(int) wp_remote_retrieve_response_code( $response ),

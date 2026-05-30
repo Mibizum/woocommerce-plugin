@@ -71,6 +71,7 @@ class Widget_Injector {
 			}
 		}
 		if ( has_filter( 'wpml_current_language' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML core hook, consumed not defined.
 			$code = apply_filters( 'wpml_current_language', null );
 			if ( $code ) {
 				return 'lang_' . $code;

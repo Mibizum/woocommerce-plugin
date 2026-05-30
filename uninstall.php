@@ -39,7 +39,7 @@ function mibizum_search_uninstall_site() {
 		delete_option( $option );
 	}
 	// Per-scope option arrays and runtime-config transients (LIKE cleanup).
-	// phpcs:disable WordPress.DB.DirectDatabaseQuery
+	// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders
 	$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'mibizum_search_settings\\_%'" );
 	$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\\_transient\\_mibizum_search\\_%'" );
 	$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\\_transient\\_timeout\\_mibizum_search\\_%'" );
@@ -63,9 +63,9 @@ function mibizum_search_uninstall_site() {
 }
 
 if ( is_multisite() ) {
-	$site_ids = get_sites( array( 'fields' => 'ids' ) );
-	foreach ( $site_ids as $site_id ) {
-		switch_to_blog( (int) $site_id );
+	$mibizum_search_site_ids = get_sites( array( 'fields' => 'ids' ) );
+	foreach ( $mibizum_search_site_ids as $mibizum_search_site_id ) {
+		switch_to_blog( (int) $mibizum_search_site_id );
 		mibizum_search_uninstall_site();
 		restore_current_blog();
 	}

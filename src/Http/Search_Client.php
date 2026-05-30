@@ -90,7 +90,7 @@ class Search_Client {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			throw new RuntimeException( 'Search client: ' . $response->get_error_message() );
+			throw new RuntimeException( esc_html( 'Search client: ' . $response->get_error_message() ) );
 		}
 		$code = (int) wp_remote_retrieve_response_code( $response );
 		$body = (string) wp_remote_retrieve_body( $response );
@@ -112,7 +112,7 @@ class Search_Client {
 		}
 
 		throw new RuntimeException(
-			sprintf( 'Search client: backend HTTP %d %s', $code, substr( $body, 0, 300 ) )
+			esc_html( sprintf( 'Search client: backend HTTP %d %s', $code, substr( $body, 0, 300 ) ) )
 		);
 	}
 

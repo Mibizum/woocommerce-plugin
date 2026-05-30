@@ -80,6 +80,7 @@ class Scope_Resolver {
 
 		// WPML.
 		if ( has_filter( 'wpml_active_languages' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML core hook, consumed not defined.
 			$langs = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0 ) );
 			if ( is_array( $langs ) ) {
 				foreach ( $langs as $code => $info ) {
@@ -161,6 +162,7 @@ class Scope_Resolver {
 			$switched_blog = true;
 		}
 		if ( 'language' === $scope['type'] && $scope['lang'] && has_action( 'wpml_switch_language' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML core hook, consumed not defined.
 			do_action( 'wpml_switch_language', $scope['lang'] );
 		}
 
@@ -171,6 +173,7 @@ class Scope_Resolver {
 				restore_current_blog();
 			}
 			if ( 'language' === $scope['type'] && has_action( 'wpml_switch_language' ) ) {
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML core hook, consumed not defined.
 				do_action( 'wpml_switch_language', null );
 			}
 		}
@@ -189,6 +192,7 @@ class Scope_Resolver {
 			return (int) $product_id;
 		}
 		if ( has_filter( 'wpml_object_id' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML core hook, consumed not defined.
 			return (int) apply_filters( 'wpml_object_id', $product_id, 'product', false, $scope['lang'] );
 		}
 		if ( function_exists( 'pll_get_post' ) ) {

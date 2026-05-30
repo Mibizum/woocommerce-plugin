@@ -108,7 +108,7 @@ class Badges_Editor {
 		global $wpdb;
 		$defs  = Badge_Repository::category_table();
 		$terms = Badge_Repository::category_terms_table();
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- table name is a trusted internal constant ($wpdb->prefix + literal), not user input.
 		$rows = $wpdb->get_results( "SELECT * FROM {$defs} ORDER BY sort_priority ASC, id ASC", ARRAY_A );
 
 		echo '<table class="widefat striped" style="max-width:760px;margin:14px 0;"><thead><tr>';
@@ -120,7 +120,7 @@ class Badges_Editor {
 		echo '<th></th></tr></thead><tbody>';
 		if ( $rows ) {
 			foreach ( $rows as $r ) {
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- table name is a trusted internal constant ($wpdb->prefix + literal), not user input.
 				$count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$terms} WHERE badge_id = %d", $r['id'] ) );
 				echo '<tr>';
 				echo '<td>' . esc_html( $r['label'] ) . '</td>';
@@ -174,7 +174,7 @@ class Badges_Editor {
 			array(
 				'enabled'       => isset( $_POST['enabled'] ) ? 1 : 0,
 				'label'         => $label,
-				'color_hex'     => $this->clean_color( $_POST['color_hex'] ?? '' ),
+				'color_hex'     => $this->clean_color( isset( $_POST['color_hex'] ) ? sanitize_text_field( wp_unslash( $_POST['color_hex'] ) ) : '' ),
 				'sort_priority' => isset( $_POST['sort_priority'] ) ? (int) $_POST['sort_priority'] : 0,
 			)
 		); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
@@ -214,7 +214,7 @@ class Badges_Editor {
 	private function render_attribute_tab() {
 		global $wpdb;
 		$defs = Badge_Repository::attribute_table();
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- table name is a trusted internal constant ($wpdb->prefix + literal), not user input.
 		$rows = $wpdb->get_results( "SELECT * FROM {$defs} ORDER BY sort_priority ASC, id ASC", ARRAY_A );
 
 		echo '<table class="widefat striped" style="max-width:760px;margin:14px 0;"><thead><tr>';
@@ -275,7 +275,7 @@ class Badges_Editor {
 				'taxonomy'      => $taxonomy,
 				'match_value'   => isset( $_POST['match_value'] ) ? sanitize_title( wp_unslash( $_POST['match_value'] ) ) : '',
 				'label'         => $label,
-				'color_hex'     => $this->clean_color( $_POST['color_hex'] ?? '' ),
+				'color_hex'     => $this->clean_color( isset( $_POST['color_hex'] ) ? sanitize_text_field( wp_unslash( $_POST['color_hex'] ) ) : '' ),
 				'sort_priority' => isset( $_POST['sort_priority'] ) ? (int) $_POST['sort_priority'] : 0,
 			)
 		); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
@@ -355,7 +355,7 @@ class Badges_Editor {
 	}
 
 	private function clean_color( $value ) {
-		$value = sanitize_text_field( wp_unslash( (string) $value ) );
+		$value = (string) $value;
 		return preg_match( '/^#[0-9a-fA-F]{3,8}$/', $value ) ? $value : '#2271b1';
 	}
 

@@ -209,7 +209,7 @@ class Badge_Repository {
 		$defs  = self::category_table();
 		$terms = self::category_terms_table();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- trusted constant table names; read-only badge config; no user input in SQL.
 		$rows = $wpdb->get_results(
 			"SELECT d.id, d.label, d.color_hex, d.text_color_hex, d.position, d.shape, d.sort_priority,
 				t.term_id, t.include_children
@@ -259,7 +259,7 @@ class Badge_Repository {
 			return $cache;
 		}
 		$table = self::attribute_table();
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- trusted constant table names; read-only badge config; no user input in SQL.
 		$rows  = $wpdb->get_results( "SELECT * FROM {$table} WHERE enabled = 1 ORDER BY sort_priority ASC, id ASC", ARRAY_A );
 		$cache = $rows ? $rows : array();
 		return $cache;

@@ -376,11 +376,11 @@ class Settings_Tab {
 				'data_source_slug' => isset( $_POST['mbz_data_source_slug'] ) ? sanitize_text_field( wp_unslash( $_POST['mbz_data_source_slug'] ) ) : '',
 			)
 		);
-		$indexer = isset( $_POST['mbz_indexer_key'] ) ? trim( (string) wp_unslash( $_POST['mbz_indexer_key'] ) ) : '';
+		$indexer = isset( $_POST['mbz_indexer_key'] ) ? sanitize_text_field( wp_unslash( $_POST['mbz_indexer_key'] ) ) : '';
 		if ( '' !== $indexer ) {
 			$this->settings->set_indexer_key( $indexer );
 		}
-		$search = isset( $_POST['mbz_search_key'] ) ? trim( (string) wp_unslash( $_POST['mbz_search_key'] ) ) : '';
+		$search = isset( $_POST['mbz_search_key'] ) ? sanitize_text_field( wp_unslash( $_POST['mbz_search_key'] ) ) : '';
 		if ( '' !== $search ) {
 			$this->settings->set_search_key( $search );
 		}
@@ -391,14 +391,19 @@ class Settings_Tab {
 	 * @return void
 	 */
 	private function save_frontend() {
-		// phpcs:disable WordPress.Security.NonceVerification.Missing
+		// Nonce is verified by WC_Admin_Settings::save() before this fires.
+		// The widget snippet is a trusted, admin-only script loader stored
+		// verbatim (it cannot be run through sanitize_text_field without breaking
+		// the <script> tag), like core's custom head scripts.
+		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$snippet = isset( $_POST['mbz_widget_snippet'] ) ? trim( (string) wp_unslash( $_POST['mbz_widget_snippet'] ) ) : '';
 		$this->settings->update(
 			array(
 				'widget_enabled' => isset( $_POST['mbz_widget_enabled'] ) && 'yes' === $_POST['mbz_widget_enabled'],
-				'widget_snippet' => isset( $_POST['mbz_widget_snippet'] ) ? trim( (string) wp_unslash( $_POST['mbz_widget_snippet'] ) ) : '',
+				'widget_snippet' => $snippet,
 			)
 		);
-		// phpcs:enable WordPress.Security.NonceVerification.Missing
+		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 
 	/**

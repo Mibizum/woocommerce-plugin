@@ -166,11 +166,10 @@ class Scheduler {
 
 			$ids = get_posts(
 				array(
-					'post_type'        => 'product',
-					'post_status'      => 'publish',
-					'fields'           => 'ids',
-					'numberposts'      => -1,
-					'suppress_filters' => true,
+					'post_type'   => 'product',
+					'post_status' => 'publish',
+					'fields'      => 'ids',
+					'numberposts' => -1,
 				)
 			);
 			$enqueued = $this->queue->enqueue_bulk_upsert( array_map( 'intval', (array) $ids ), 'full_reindex' );

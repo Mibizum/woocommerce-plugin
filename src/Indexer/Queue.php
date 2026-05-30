@@ -96,7 +96,7 @@ class Queue {
 			}
 			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$sql = "INSERT IGNORE INTO {$table} (operation, product_id, reason, enqueued_at, attempts) VALUES " . implode( ', ', $placeholders );
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 			$wpdb->query( $wpdb->prepare( $sql, $values ) );
 			$count += count( $chunk );
 		}
@@ -116,11 +116,11 @@ class Queue {
 
 		// 1. Recycle expired locks.
 		$expired = gmdate( 'Y-m-d H:i:s', time() - self::LOCK_TIMEOUT );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$wpdb->query( $wpdb->prepare( "UPDATE {$table} SET locked_at = NULL, locked_by = NULL WHERE locked_at IS NOT NULL AND locked_at < %s", $expired ) );
 
 		// 2. Select unlocked candidates (oldest first).
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$ids = $wpdb->get_col( $wpdb->prepare( "SELECT queue_id FROM {$table} WHERE locked_at IS NULL ORDER BY enqueued_at ASC LIMIT %d", (int) $batch_size ) );
 		if ( empty( $ids ) ) {
 			return array();
@@ -130,11 +130,11 @@ class Queue {
 		$now          = gmdate( 'Y-m-d H:i:s' );
 		$placeholders = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
 		$args         = array_merge( array( $now, $worker_token ), array_map( 'intval', $ids ) );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$wpdb->query( $wpdb->prepare( "UPDATE {$table} SET locked_at = %s, locked_by = %s, attempts = attempts + 1 WHERE locked_at IS NULL AND queue_id IN ({$placeholders})", $args ) );
 
 		// 4. Return the rows we hold.
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		return $wpdb->get_results( $wpdb->prepare( "SELECT queue_id, operation, product_id, sku, reason, attempts FROM {$table} WHERE locked_by = %s", $worker_token ), ARRAY_A );
 	}
 
@@ -151,7 +151,7 @@ class Queue {
 		}
 		$table        = self::table();
 		$placeholders = implode( ', ', array_fill( 0, count( $queue_ids ), '%d' ) );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		return (int) $wpdb->query( $wpdb->prepare( "DELETE FROM {$table} WHERE queue_id IN ({$placeholders})", array_map( 'intval', $queue_ids ) ) );
 	}
 
@@ -174,12 +174,12 @@ class Queue {
 
 		// Discard rows that already exceeded max_attempts.
 		$discard_args = array_merge( array( (int) $max_attempts ), $ids );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$discarded = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM {$table} WHERE attempts >= %d AND queue_id IN ({$placeholders})", $discard_args ) );
 
 		// Release the rest.
 		$release_args = array_merge( array( substr( (string) $error, 0, 5000 ), (int) $max_attempts ), $ids );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$wpdb->query( $wpdb->prepare( "UPDATE {$table} SET locked_at = NULL, locked_by = NULL, last_error = %s WHERE attempts < %d AND queue_id IN ({$placeholders})", $release_args ) );
 
 		return $discarded;
@@ -193,7 +193,7 @@ class Queue {
 	public function stats() {
 		global $wpdb;
 		$table = self::table();
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$row = $wpdb->get_row(
 			"SELECT
 				COUNT(*) AS total,
@@ -235,7 +235,7 @@ class Queue {
 		$table = self::table();
 		$now   = gmdate( 'Y-m-d H:i:s' );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$existing = $wpdb->get_var( $wpdb->prepare( "SELECT queue_id FROM {$table} WHERE product_id = %d AND operation = %s LIMIT 1", $product_id, $operation ) );
 
 		$data = array(
@@ -275,7 +275,7 @@ class Queue {
 	private function remove_opposite( $product_id, $operation ) {
 		global $wpdb;
 		$table = self::table();
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom queue table; trusted constant table name; all values placeholder-bound.
 		$wpdb->query( $wpdb->prepare( "DELETE FROM {$table} WHERE product_id = %d AND operation = %s AND locked_at IS NULL", $product_id, $operation ) );
 	}
 }

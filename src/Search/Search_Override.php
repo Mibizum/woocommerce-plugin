@@ -139,7 +139,6 @@ class Search_Override {
 					'posts_per_page'   => count( $ids ),
 					'fields'           => 'ids',
 					'no_found_rows'    => true,
-					'suppress_filters' => true,
 				)
 			);
 
@@ -183,6 +182,7 @@ class Search_Override {
 			}
 		}
 		if ( has_filter( 'wpml_current_language' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML core hook, consumed not defined.
 			$code = apply_filters( 'wpml_current_language', null );
 			if ( $code ) {
 				return 'lang_' . $code;
