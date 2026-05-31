@@ -77,4 +77,4 @@ and the [project wiki](../../wiki).
 
 ## License
 
-[MIT](LICENSE).
+[GPLv2 or later](LICENSE).

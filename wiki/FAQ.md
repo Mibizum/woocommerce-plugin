@@ -37,4 +37,4 @@ Delete it from Plugins, Delete: the uninstall routine removes options and tables
 and unschedules background actions. Deactivating only pauses and keeps the data.
 
 **Is the plugin paid?**
-The plugin is free and open source (MIT). It needs a Mibizum account to work.
+The plugin is free and open source (GPLv2 or later). It needs a Mibizum account to work.

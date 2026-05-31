@@ -1,5 +1,5 @@
 # Copyright (C) 2026 Mibizum
-# This file is distributed under the MIT.
+# This file is distributed under the GPLv2 or later license.
 msgid ""
 msgstr ""
 "Project-Id-Version: Mibizum Search for WooCommerce 0.1.0\n"

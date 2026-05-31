@@ -2,7 +2,7 @@
 	"name": "mibizum/search-for-woocommerce",
 	"description": "Privacy first search for WooCommerce: background indexing, instant search widget, and a native search override with automatic fallback.",
 	"type": "wordpress-plugin",
-	"license": "MIT",
+	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": ">=7.4"
 	},
