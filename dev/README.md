@@ -9,7 +9,7 @@ A dedicated, throwaway stack: WordPress + MariaDB, with this plugin mounted and
 WooCommerce + sample products provisioned automatically.
 
 ```bash
-cd packages/adapter-woocommerce/dev
+cd dev
 docker compose up -d
 docker compose logs -f wpcli      # watch provisioning
 ```
@@ -27,7 +27,7 @@ Needs only `php` and `wp-cli` on PATH. Builds an isolated site on SQLite, so no
 MySQL is required.
 
 ```bash
-cd packages/adapter-woocommerce/dev
+cd dev
 ./install-local.sh          # builds into ~/mibizum-wp-test
 ./install-local.sh serve    # starts http://localhost:8089
 ```

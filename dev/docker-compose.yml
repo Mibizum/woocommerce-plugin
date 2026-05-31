@@ -3,7 +3,7 @@
 # Brings up a throwaway WordPress + MariaDB, mounts this plugin live, installs
 # WooCommerce, imports the WooCommerce sample products, and activates the plugin.
 #
-#   cd packages/adapter-woocommerce/dev
+#   cd dev
 #   docker compose up -d
 #   # WordPress:        http://localhost:8088   (admin / admin)
 #   # provisioning logs: docker compose logs -f wpcli
