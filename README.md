@@ -33,11 +33,19 @@ automatic fallback to native search), and adds an instant search widget.
 | Indexer | write | Server side, stored encrypted, never sent to the browser |
 | Search  | read  | Used by the server side override and embedded in the public widget snippet |
 
-## Requirements
+## Compatibility
 
-- WordPress 6.0+
-- WooCommerce 7.0+ (HPOS compatible)
-- PHP 7.4+
+The plugin targets PHP 7.4 and runs unchanged through PHP 8.x, so no merchant is
+left out. Safe disable means an unsupported setup never breaks the store: search
+falls back to native WooCommerce search.
+
+| | Supported |
+|---|---|
+| **WordPress** | 6.0 to 7.0 |
+| **WooCommerce** | 7.0 to 10.x (HPOS compatible) |
+| **PHP** | 7.4 through 8.x |
+
+Verified live on WordPress 7.0 + WooCommerce 10.8.1 (PHP 8.2).
 
 ## Install
 
@@ -72,8 +80,9 @@ composer run lint
 
 ## Documentation
 
-Full guides at [docs.mibizum.io/woocommerce](https://docs.mibizum.io/woocommerce),
-and the [project wiki](../../wiki).
+Full guides live at
+[docs.mibizum.io/woocommerce](https://docs.mibizum.io/woocommerce) and in the
+project [wiki](https://github.com/Mibizum/woocommerce-plugin/wiki).
 
 ## License
 
