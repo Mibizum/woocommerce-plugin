@@ -21,8 +21,8 @@ link and never blocks the admin.
 |-------|-------|
 | Enabled | `No` until the keys are set, then `Yes`. |
 | API URL | `https://app.mibizum.io` |
-| API key (indexer) | Write key. Stored encrypted, never sent to the browser. |
-| API key (search) | Read key. Used by the override and the public widget. Stored encrypted. |
+| Private API key | Write key. Stored encrypted, never sent to the browser. |
+| Public API key | Read key. Used by the override and the public widget. Stored encrypted. |
 | Data source slug | The catalog slug (e.g. `products`). Empty uses the account first data source. |
 
 Saving a connection change schedules a full reindex.

@@ -202,7 +202,7 @@ class Settings_Tab {
 			array(
 				'type'              => 'password',
 				'id'                => 'mbz_indexer_key',
-				'title'             => __( 'API key (indexer)', 'mibizum-search' ),
+				'title'             => __( 'Private API key', 'mibizum-search' ),
 				'desc'              => $key_note( '' !== $this->settings->get_indexer_key() ),
 				'value'             => '',
 				'custom_attributes' => array( 'autocomplete' => 'new-password' ),
@@ -210,7 +210,7 @@ class Settings_Tab {
 			array(
 				'type'              => 'password',
 				'id'                => 'mbz_search_key',
-				'title'             => __( 'API key (search)', 'mibizum-search' ),
+				'title'             => __( 'Public API key', 'mibizum-search' ),
 				'desc'              => $key_note( '' !== $this->settings->get_search_key() ),
 				'value'             => '',
 				'custom_attributes' => array( 'autocomplete' => 'new-password' ),

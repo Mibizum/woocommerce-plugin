@@ -25,5 +25,5 @@ changes do not.
 ## Per scope search and widget
 
 The search override and the widget query the current language or site catalog with
-its own search key. The Reindex panel shows a "Connected catalogs" table when more
+its own public key. The Reindex panel shows a "Connected catalogs" table when more
 than one scope exists.

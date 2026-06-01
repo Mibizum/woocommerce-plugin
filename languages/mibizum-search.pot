@@ -224,7 +224,7 @@ msgid "Not configured"
 msgstr ""
 
 #: src/Admin/Rest_Controller.php:127
-msgid "Not connected: set the connection (enabled + indexer key + API URL) before reindexing."
+msgid "Not connected: set the connection (enabled + private key + API URL) before reindexing."
 msgstr ""
 
 #: src/Admin/Rest_Controller.php:165
@@ -279,11 +279,11 @@ msgid "API URL"
 msgstr ""
 
 #: src/Admin/Settings_Tab.php:205
-msgid "API key (indexer)"
+msgid "Private API key"
 msgstr ""
 
 #: src/Admin/Settings_Tab.php:213
-msgid "API key (search)"
+msgid "Public API key"
 msgstr ""
 
 #: src/Admin/Settings_Tab.php:221

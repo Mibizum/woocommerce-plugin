@@ -11,12 +11,12 @@ never an error. By design, the plugin never breaks the store.
 No. It runs in the background with Action Scheduler.
 
 **Why two API keys?**
-The indexer key (write) lives only on the server, encrypted. The search key (read)
+The private key (write) lives only on the server, encrypted. The public key (read)
 is the only one that reaches the browser, in the widget snippet. The customer
 facing key can never modify anything.
 
 **Where are the keys stored?**
-Encrypted in the database (AES-256-GCM). The indexer key is never sent to the
+Encrypted in the database (AES-256-GCM). The private key is never sent to the
 browser or written to logs.
 
 **A product is missing from search. Why?**

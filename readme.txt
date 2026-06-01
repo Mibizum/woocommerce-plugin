@@ -25,7 +25,7 @@ What it does:
 
 Safe by design. The plugin never breaks the store. If you deactivate it, leave a key half set, or Mibizum does not respond, the store keeps working and search falls back to native WooCommerce search on its own. Nothing is published until you enable the connection and provide your keys.
 
-Two API keys are used, for safety: an indexer key (write, stored encrypted on the server, never sent to the browser) and a search key (read, used by the search override and embedded in the public widget snippet).
+Two API keys are used, for safety: an private key (write, stored encrypted on the server, never sent to the browser) and a public key (read, used by the search override and embedded in the public widget snippet).
 
 == Requirements ==
 
@@ -38,7 +38,7 @@ Two API keys are used, for safety: an indexer key (write, stored encrypted on th
 
 1. Install and activate the plugin (WooCommerce must be active).
 2. Follow the first run setup wizard, or configure it manually under WooCommerce, Settings, Mibizum.
-3. Paste the indexer and search keys, choose the data source, and run the first indexing.
+3. Paste the private and public keys, choose the data source, and run the first indexing.
 
 == Frequently Asked Questions ==
 
@@ -57,11 +57,11 @@ connection and provide your API keys.
 
 What is sent, and when:
 
-* Indexing (server side, using your indexer key): when you save a product or its
+* Indexing (server side, using your private key): when you save a product or its
   stock changes, the plugin sends that product's catalog data (name, SKU,
   descriptions, price, stock, image URL, categories, product URL, and the
   attributes and badges you configure) to https://app.mibizum.io.
-* Search (using your search key): a customer's search query on your store is sent
+* Search (using your public key): a customer's search query on your store is sent
   to https://app.mibizum.io to return matching products. Your store's origin is
   sent so the service can validate the request.
 * No customer personal data is sent, and nothing at all is sent until you connect

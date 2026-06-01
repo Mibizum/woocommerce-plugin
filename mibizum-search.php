@@ -24,9 +24,9 @@
  * enabled and the keys are present.
  *
  * Two API keys are used:
- *   - INDEXER key: write scope. Server side secret, stored encrypted, never
+ *   - PRIVATE key (write, indexing): server side secret, stored encrypted, never
  *     exposed to the browser.
- *   - SEARCH key: read scope. Used by the server side search override and
+ *   - PUBLIC key (read, search): used by the server side search override and
  *     embedded by the merchant in the widget snippet. The only key that reaches
  *     the browser.
  */

@@ -124,7 +124,7 @@ class Rest_Controller {
 			return new \WP_REST_Response(
 				array(
 					'success' => false,
-					'message' => __( 'Not connected: set the connection (enabled + indexer key + API URL) before reindexing.', 'mibizum-search' ),
+					'message' => __( 'Not connected: set the connection (enabled + private key + API URL) before reindexing.', 'mibizum-search' ),
 				),
 				400
 			);

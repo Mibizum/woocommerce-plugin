@@ -12,7 +12,7 @@ pending" never drops, check cron. As a one off, click **Resync all products**.
 |---------|-------|
 | Nothing new in search | Is it Enabled with keys set? Is cron running? Resync. |
 | A product is missing | Is it published and not hidden from the catalog? Does it have a price? Reindex. |
-| Search looks like the old one | The fallback kicked in: the engine did not respond, or the search key is missing. |
+| Search looks like the old one | The fallback kicked in: the engine did not respond, or the public key is missing. |
 | Widget not showing | Did you enable the widget and paste the snippet? |
 | Changed badges, not visible | Wait for the scheduled reindex, or Resync. |
 

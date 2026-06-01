@@ -219,8 +219,8 @@ msgid "Not configured"
 msgstr "Non configurato"
 
 #: src/Admin/Rest_Controller.php:127
-msgid "Not connected: set the connection (enabled + indexer key + API URL) before reindexing."
-msgstr "Non connesso: configura la connessione (attivato + chiave di indicizzazione + URL API) prima di reindicizzare."
+msgid "Not connected: set the connection (enabled + private key + API URL) before reindexing."
+msgstr "Non connesso: configura la connessione (attivato + chiave API privata + URL API) prima di reindicizzare."
 
 #: src/Admin/Rest_Controller.php:165
 msgid "No keys received from Mibizum."
@@ -274,12 +274,12 @@ msgid "API URL"
 msgstr "URL API"
 
 #: src/Admin/Settings_Tab.php:205
-msgid "API key (indexer)"
-msgstr "Chiave API (indexer)"
+msgid "Private API key"
+msgstr "Chiave API privata"
 
 #: src/Admin/Settings_Tab.php:213
-msgid "API key (search)"
-msgstr "Chiave API (search)"
+msgid "Public API key"
+msgstr "Chiave API pubblica"
 
 #: src/Admin/Settings_Tab.php:221
 msgid "Data source slug"
