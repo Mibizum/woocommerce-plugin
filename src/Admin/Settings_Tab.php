@@ -174,10 +174,13 @@ class Settings_Tab {
 	 * @return array
 	 */
 	private function connection_fields() {
-		$key_note = function ( $is_set ) {
-			return $is_set
-				? __( 'A key is stored. Leave blank to keep it.', 'mibizum-search' )
-				: __( 'Stored encrypted. Never sent to the browser.', 'mibizum-search' );
+		$key_note = function ( $is_set, $is_secret ) {
+			if ( $is_set ) {
+				return __( 'A key is stored. Leave blank to keep it.', 'mibizum-search' );
+			}
+			return $is_secret
+				? __( 'Stored encrypted, server-side only.', 'mibizum-search' )
+				: __( 'Stored encrypted. Safe to expose; it goes in the widget.', 'mibizum-search' );
 		};
 		return array(
 			array(
@@ -203,7 +206,7 @@ class Settings_Tab {
 				'type'              => 'password',
 				'id'                => 'mbz_indexer_key',
 				'title'             => __( 'Private API key', 'mibizum-search' ),
-				'desc'              => $key_note( '' !== $this->settings->get_indexer_key() ),
+				'desc'              => $key_note( '' !== $this->settings->get_indexer_key(), true ),
 				'value'             => '',
 				'custom_attributes' => array( 'autocomplete' => 'new-password' ),
 			),
@@ -211,7 +214,7 @@ class Settings_Tab {
 				'type'              => 'password',
 				'id'                => 'mbz_search_key',
 				'title'             => __( 'Public API key', 'mibizum-search' ),
-				'desc'              => $key_note( '' !== $this->settings->get_search_key() ),
+				'desc'              => $key_note( '' !== $this->settings->get_search_key(), false ),
 				'value'             => '',
 				'custom_attributes' => array( 'autocomplete' => 'new-password' ),
 			),

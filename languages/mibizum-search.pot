@@ -263,7 +263,7 @@ msgid "A key is stored. Leave blank to keep it."
 msgstr ""
 
 #: src/Admin/Settings_Tab.php:180
-msgid "Stored encrypted. Never sent to the browser."
+msgid "Stored encrypted, server-side only."
 msgstr ""
 
 #: src/Admin/Settings_Tab.php:187
@@ -471,4 +471,7 @@ msgstr ""
 
 #: templates/wizard.php:78
 msgid "Done"
+msgstr ""
+
+msgid "Stored encrypted. Safe to expose; it goes in the widget."
 msgstr ""

@@ -258,8 +258,8 @@ msgid "A key is stored. Leave blank to keep it."
 msgstr "Hay una clave guardada. Déjalo en blanco para mantenerla."
 
 #: src/Admin/Settings_Tab.php:180
-msgid "Stored encrypted. Never sent to the browser."
-msgstr "Se guarda cifrada. Nunca se envía al navegador."
+msgid "Stored encrypted, server-side only."
+msgstr "Se guarda cifrada, solo en el servidor."
 
 #: src/Admin/Settings_Tab.php:187
 msgid "The only step needed for the plugin to start working. Nothing is published until this is enabled and the keys are present."
@@ -468,3 +468,6 @@ msgstr "Tu tienda está conectada a Mibizum. Tu caja de búsqueda ahora usa el m
 msgid "Done"
 msgstr "Listo"
 
+
+msgid "Stored encrypted. Safe to expose; it goes in the widget."
+msgstr "Se guarda cifrada. Segura de exponer: va en el widget."
