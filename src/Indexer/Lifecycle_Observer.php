@@ -65,6 +65,14 @@ class Lifecycle_Observer {
 		add_action( 'woocommerce_product_set_stock_status', array( $this, 'on_stock_status' ), 10, 3 );
 		add_action( 'woocommerce_variation_set_stock_status', array( $this, 'on_stock_status' ), 10, 3 );
 		add_action( 'woocommerce_updated_product_stock', array( $this, 'on_stock_legacy' ), 10, 1 );
+
+		// Thumbnails regenerated ("Regenerate Thumbnails" plugin, an image-size
+		// change, etc.) rewrite/delete the intermediate-size files the index points
+		// at (we index wp_get_attachment_image_url( id, 'woocommerce_thumbnail' )) ->
+		// the indexed link goes stale (broken thumbnail) until a reindex. Re-push
+		// every product whose featured image is this attachment. Filter, not action:
+		// the callback must return $metadata unchanged.
+		add_filter( 'wp_generate_attachment_metadata', array( $this, 'on_attachment_meta_regenerated' ), 10, 2 );
 	}
 
 	/**
@@ -140,6 +148,62 @@ class Lifecycle_Observer {
 	 */
 	public function on_stock_legacy( $product_id ) {
 		$this->enqueue_upsert( (int) $product_id, 'stock_change' );
+	}
+
+	/**
+	 * A media attachment's thumbnails were (re)generated. WordPress fires this for
+	 * "Regenerate Thumbnails", image-size changes and on upload. The index stores a
+	 * registered intermediate-size URL (woocommerce_thumbnail) -- exactly what
+	 * regeneration rewrites/deletes -- so the indexed link goes stale (broken
+	 * thumbnail) until a reindex. Re-push every product whose featured image is this
+	 * attachment. Registered as a filter, so it must return $metadata unchanged.
+	 *
+	 * @param array $metadata
+	 * @param int   $attachment_id
+	 * @return array
+	 */
+	public function on_attachment_meta_regenerated( $metadata, $attachment_id ) {
+		if ( ! $this->settings->is_enabled_anywhere() ) {
+			return $metadata;
+		}
+		try {
+			foreach ( $this->products_using_image( (int) $attachment_id ) as $product_id ) {
+				$this->enqueue_upsert( $product_id, 'image_regenerated' );
+			}
+		} catch ( \Exception $e ) {
+			$this->logger->error( 'on_attachment_meta_regenerated failed: ' . $e->getMessage() );
+		}
+		return $metadata;
+	}
+
+	/**
+	 * Product IDs whose featured image is the given attachment. A variation's image
+	 * maps to its parent (that is the document we index). Capped to avoid a runaway
+	 * query if one image is shared across an unusually large number of products.
+	 *
+	 * @param int $attachment_id
+	 * @return int[]
+	 */
+	private function products_using_image( $attachment_id ) {
+		if ( $attachment_id <= 0 ) {
+			return array();
+		}
+		$ids = get_posts(
+			array(
+				'post_type'      => array( 'product', 'product_variation' ),
+				'post_status'    => 'any',
+				'fields'         => 'ids',
+				'posts_per_page' => 200,
+				'no_found_rows'  => true,
+				'meta_key'       => '_thumbnail_id',      // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'     => (int) $attachment_id, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+			)
+		);
+		$out = array();
+		foreach ( $ids as $id ) {
+			$out[] = ( 'product_variation' === get_post_type( $id ) ) ? (int) wp_get_post_parent_id( $id ) : (int) $id;
+		}
+		return array_values( array_unique( array_filter( $out ) ) );
 	}
 
 	/**

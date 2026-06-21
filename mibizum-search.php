@@ -3,7 +3,7 @@
  * Plugin Name:       Mibizum Search for WooCommerce
  * Plugin URI:        https://mibizum.io
  * Description:       Privacy first search for WooCommerce. Indexes the catalog in the background, replaces the native product search with the Mibizum engine (with automatic fallback to native search), and adds the instant search widget.
- * Version:           0.1.0
+ * Version:           0.1.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Mibizum
@@ -37,7 +37,7 @@ if ( defined( 'MIBIZUM_SEARCH_VERSION' ) ) {
 	return;
 }
 
-define( 'MIBIZUM_SEARCH_VERSION', '0.1.0' );
+define( 'MIBIZUM_SEARCH_VERSION', '0.1.2' );
 define( 'MIBIZUM_SEARCH_FILE', __FILE__ );
 define( 'MIBIZUM_SEARCH_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MIBIZUM_SEARCH_URL', plugin_dir_url( __FILE__ ) );

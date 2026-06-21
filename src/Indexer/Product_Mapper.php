@@ -211,7 +211,14 @@ class Product_Mapper {
 		if ( ! $image_id ) {
 			return '';
 		}
-		$url = wp_get_attachment_image_url( $image_id, 'full' );
+		$size = apply_filters( 'mibizum_search_product_image_size', 'woocommerce_thumbnail', $product );
+		if ( empty( $size ) ) {
+			$size = 'woocommerce_thumbnail';
+		}
+		$url = wp_get_attachment_image_url( $image_id, $size );
+		if ( ! $url && 'thumbnail' !== $size ) {
+			$url = wp_get_attachment_image_url( $image_id, 'thumbnail' );
+		}
 		return $url ? (string) $url : '';
 	}
 

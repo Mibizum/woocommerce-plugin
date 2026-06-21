@@ -4,7 +4,7 @@ Tags: search, woocommerce, instant search, product search, search engine
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,12 @@ Privacy policy: https://mibizum.io/legal/privacy
 6. Search results served by the Mibizum engine on the storefront.
 
 == Changelog ==
+
+= 0.1.2 =
+* Keep indexed product images fresh when thumbnails are regenerated. The plugin hooks `wp_generate_attachment_metadata` and re-syncs every product whose featured image is the regenerated attachment, so the `woocommerce_thumbnail` URL stored in the index does not break after a "Regenerate Thumbnails" run or an image-size change.
+
+= 0.1.1 =
+* Index WooCommerce product search images with `woocommerce_thumbnail` by default instead of the original `full` asset. Merchants can override the indexed image size with the `mibizum_search_product_image_size` filter.
 
 = 0.1.0 =
 * Initial release.
